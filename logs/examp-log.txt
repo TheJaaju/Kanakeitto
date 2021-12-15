@@ -1,0 +1,1 @@
+[DD/MM/YYYY @ HH:MM:SS]: [message guild /server] - [channel]: (userName,<@userID>):example text
