@@ -13,7 +13,7 @@ TannerGabriels repo: https://github.com/TannerGabriel/discord-bot
 git clone https://github.com/TheJaaju/Kanakeitto.git
 
 # Change to the bots directory
-cd discord-bot/
+cd Kanakeitto/
 
 # Install the dependencies
 npm install
