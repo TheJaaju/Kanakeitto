@@ -23,4 +23,7 @@ npm install
 # Then run
 node index.js
 
+# Or use the run script
+./run.sh
+
 ```
