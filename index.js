@@ -3,6 +3,9 @@ const Discord = require('discord.js');
 const Client = require('./client/Client');
 const config = require('./config.json');
 const { Player } = require('discord-player');
+const time = require('./modules/time.js');
+
+const timestamp =  time.datetime(new Date())
 
 const client = new Client();
 client.commands = new Discord.Collection();
@@ -82,16 +85,8 @@ client.once('disconnect', () => {
 
 
 client.on('messageCreate', async message => {
-  // Time And Date for timestamping the logs
-  var currentdate = new Date(); 
-  var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
 
-  let logdata = `[${datetime}]: [${message.guild}] - [${message.channel.name}]: (${message.author.username},${message.author}):`+message.content
+  let logdata = `[${timestamp}]: [${message.guild}] - [${message.channel.name}]: (${message.author.username},${message.author}):`+message.content
   
   fs.appendFile(`./logs/${message.guild}.txt`, logdata+'\n' ,function(err){
     if(err) throw err;
@@ -101,7 +96,7 @@ client.on('messageCreate', async message => {
   if (message.author.bot || !message.guild) return;
   if (!client.application?.owner) await client.application?.fetch();
 
-  if (message.content === '!deploy' && message.author.id === client.application?.owner?.id) {
+  if (message.content === config.prefix+'deploy' && message.author.id === client.application?.owner?.id) {
     await message.guild.commands
       .set(client.commands)
       .then(() => {
@@ -113,11 +108,11 @@ client.on('messageCreate', async message => {
       });
   }
 
-  if (message.content == "!inv-link") {
+  if (message.content == config.prefix+"inv-link") {
     message.channel.send("Invite: https://discordapp.com/oauth2/authorize?&client_id="+config.applicationID+"&scope=bot&permissions=8")
     return;
   }
-  if (message.content === "!ac-link" && message.author.id === client.application?.owner.id) {
+  if (message.content === config.prefix+"ac-link") {
     message.channel.send("Application Commands: https://discord.com/api/oauth2/authorize?client_id="+config.applicationID+"&scope=applications.commands")
     return;
   }
