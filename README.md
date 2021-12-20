@@ -14,7 +14,7 @@ but most of the messages there are in finnish
 ## Installation and Usage
 
 ```bash
-In linux or wsl (Windows Subsystem for Linux):
+In linux or WSL (Windows Subsystem for Linux):
 
 # Clone the repository
 git clone https://github.com/TheJaaju/Kanakeitto.git
@@ -36,11 +36,7 @@ node index.js
 ```
 
 ## Requirements
-```bash
-- Linux (Or WSL)
 
-- NodeJS v16.10
-
-- FFMPEG
-```
-
+- [Node](https://nodejs.org/en/) - Version 16 or higher
+- [NPM](https://www.npmjs.com/)
+- [FFMPEG](https://www.ffmpeg.org/)
