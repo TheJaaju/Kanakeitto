@@ -6,6 +6,11 @@ very much a work in progress lol. Adding stuff every now and then.
 
 TannerGabriels repo: https://github.com/TannerGabriel/discord-bot
 
+
+I have a discord server for this bot with update logs for my modified version and test bots,
+but most of the messages there are in finnish
+- https://discord.gg/acwVgmmYGR
+
 ## Installation and Usage
 
 ```bash
