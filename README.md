@@ -34,3 +34,11 @@ node index.js
 ./run.sh
 
 ```
+
+## Requirements
+```bash
+- Linux (Or WSL)
+
+- NodeJS v16.10
+```
+
