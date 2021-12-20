@@ -40,5 +40,7 @@ node index.js
 - Linux (Or WSL)
 
 - NodeJS v16.10
+
+- FFMPEG
 ```
 
