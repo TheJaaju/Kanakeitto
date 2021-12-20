@@ -9,6 +9,8 @@ TannerGabriels repo: https://github.com/TannerGabriel/discord-bot
 ## Installation and Usage
 
 ```bash
+In linux or wsl (Windows Subsystem for Linux):
+
 # Clone the repository
 git clone https://github.com/TheJaaju/Kanakeitto.git
 
