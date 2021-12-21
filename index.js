@@ -22,57 +22,96 @@ config.activityType = "PLAYING";
 config.activity = "nothing";
 
 const player = new Player(client);
-console.log(player.commandFiles);
 
 player.on('error', (queue, error) => {
   console.log(`[${queue.guild.name}] Error emitted from the queue: ${error.message}`);
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: Error emitted from the queue: ${error.message}`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 player.on('connectionError', (queue, error) => {
   console.log(`[${queue.guild.name}] Error emitted from the connection: ${error.message}`);
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: Error emitted from the connection: ${error.message}`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 player.on('trackStart', (queue, track) => {
   queue.metadata.send(`🎶 | Started playing: **${track.title}** in **${queue.connection.channel.name}**!`);
   console.log(`[${queue.guild.name}]: trackStart - [${track.title}]`);
   client.user.setActivity(`${track.title}`, { type: 'PLAYING' });
+  
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: trackStart - [${track.title}] (Channel: ${queue.connection.channel.name})`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 player.on('trackEnd', (queue, track) => {
   console.log(`[${queue.guild.name}]: trackEnd - [${track.title}]`);
-  config.activity = "nothing";
+  client.user.setActivity(`nothing`, { type: 'PLAYING' });
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: trackEnd - [${track.title}] (Channel: ${queue.connection.channel.name})`+'\n' ,function(err){
+    if(err) throw err;
+  });
 })
 
 player.on('trackAdd', (queue, track) => {
   queue.metadata.send(`🎶 | Track **${track.title}** queued!`);
   console.log(`[${queue.guild.name}] trackAdd - [${track.title}]`);
+  
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: trackAdd - [${track.title}] (Channel: ${queue.connection.channel.name})`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 player.on('botDisconnect', queue => {
   queue.metadata.send('❌ | I was manually disconnected from the voice channel, clearing queue!');
   console.log(`[${queue.guild.name}] botDisconnect (manual)`);
   client.user.setActivity(`nothing`, { type: 'PLAYING' });
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: Manual Disconnect (Disconnected from the channel: ${queue.connection.channel.name})`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 player.on('channelEmpty', queue => {
   queue.metadata.send('❌ | Nobody is in the voice channel, leaving...');
   console.log(`[${queue.guild.name}] channelEmpty`);
   client.user.setActivity(`nothing`, { type: 'PLAYING' });
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: Channel empty (Disconnected from the channel: ${queue.connection.channel.name})`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 player.on('queueEnd', queue => {
   queue.metadata.send('✅ | Queue finished!');
   console.log(`[${queue.guild.name}] queueEnd`);
   client.user.setActivity(`nothing`, { type: 'PLAYING' });
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: [${queue.guild.name}]: Queue Finished (Channel: ${queue.connection.channel.name})`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 client.once('ready', async () => {
   console.log('Ready!');
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: The bot is ready!`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 client.on('ready', function() {
   client.user.setActivity(config.activity, { type: config.activityType });
   console.log('setActivity: Ready!');
+
+  fs.appendFile(`./logs/botlog.txt`, `[${timestamp}]: The bot's activity is ready!`+'\n' ,function(err){
+    if(err) throw err;
+  });
 });
 
 client.once('reconnecting', () => {
