@@ -1,8 +1,11 @@
 {
-  "name": "kanakeitto",
+  "name": "music-bot",
   "version": "1.0.0",
-  "repository": "https://github.com/TheJaaju/Kanakeitto.git",
-  "description": "A simple discord music bot",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheJaaju/Kanakeitto.git"
+  },
+  "description": "A simple, customised discord music bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,15 +23,20 @@
     "@discordjs/rest": "0.1.0-canary.0",
     "avconv": "^3.1.0",
     "discord-api-types": "^0.23.1",
-    "discord-player": "^5.1.0",
+    "discord-player": "^5.2.0",
     "discord.js": "^13.2.0",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^4.4.0",
     "fluent-ffmpeg": "^2.1.2",
     "opus": "^0.0.0",
-    "ytdl-core": "^4.9.1"
+    "pretty-ms": "^7.0.1",
+    "ytdl-core": "^4.10.1"
   },
   "devDependencies": {
     "prettier": "2.4.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/TheJaaju/Kanakeitto/issues"
+  },
+  "homepage": "https://github.com/TheJaaju/Kanakeitto#readme"
 }
